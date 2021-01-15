@@ -11,9 +11,11 @@ process.stdin.on("data", (data) => {
   if (command === "pwd") {
     pwd.pwd();
   } else if (command === "ls") {
-    ls.ls();
+    ls(done);
+    // ls.ls();
   } else if (command === "cat") {
     let fileName = arr[1];
+    //do the rest to everyone else as we did to ls
     cat.cat(fileName);
   } else if (command === "curl") {
     let urlName = arr[1];
@@ -21,3 +23,8 @@ process.stdin.on("data", (data) => {
   }
 });
 //prompt();
+
+function done(output) {
+  process.stdout.write(output);
+  process.stdout.write("prompt > ");
+}
